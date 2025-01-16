@@ -1,16 +1,13 @@
 from typing import Dict, Iterable
 import pandas as pd
 
-from src.utils import parse_input
+from src.utils import parse_input, group_locations_by_datetime_intervals
 
 INPUT_FILE_PATH = "TowerJumpsDataSet_CarrierRecords.csv"
 OUTPUT_CSV_PATH = "src/simple_solution/output.csv"
 HEATMAP_OUTPUT_PATH = "heatmap.html"
 CENTER_OF_NEW_YORK_STATE = (40.7128, -74.0060)
 
-def group_locations_by_datetime_intervals(data: pd.DataFrame, interval_minutes:int = 15) -> pd.DataFrame:
-    data['Interval Start'] = data['Local Date & Time'].dt.floor(f'{interval_minutes}T')
-    return data.groupby('Interval Start')
 
 def estimate_state(grouped_dataset: pd.DataFrame) -> Iterable[Dict]:
     for interval, group in grouped_dataset:

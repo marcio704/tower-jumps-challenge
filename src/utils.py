@@ -21,3 +21,7 @@ def remove_empty_rows(dataset: pd.DataFrame) -> pd.DataFrame:
 def format_dates(dataset: pd.DataFrame) -> pd.DataFrame:
     dataset['Local Date & Time'] = pd.to_datetime(dataset['Local Date & Time'], format='%m/%d/%y %H:%M')
     return dataset
+
+def group_locations_by_datetime_intervals(data: pd.DataFrame, interval_minutes:int = 15) -> pd.DataFrame:
+    data['Interval Start'] = data['Local Date & Time'].dt.floor(f'{interval_minutes}T')
+    return data.groupby('Interval Start')

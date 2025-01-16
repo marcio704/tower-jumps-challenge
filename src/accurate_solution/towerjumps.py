@@ -4,7 +4,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 from shapely.ops import nearest_points
 
-from src.utils import parse_input
+from src.utils import parse_input, group_locations_by_datetime_intervals
 
 
 INPUT_FILE_PATH = "TowerJumpsDataSet_CarrierRecords.csv"
@@ -12,11 +12,6 @@ STATE_BOUNDARIES_PATH = "src/accurate_solution/us-states-borders.geojson"
 OUTPUT_CSV_PATH = "src/accurate_solution/output.csv"
 UNKNOWN_STATE = "Unknown"
 MAX_DISTANCE = 1000  # Maximum distance in meters to normalize confidence (adjustable)
-
-
-def group_locations_by_datetime_intervals(data: pd.DataFrame, interval_minutes:int = 15) -> pd.DataFrame:
-    data['Interval Start'] = data['Local Date & Time'].dt.floor(f'{interval_minutes}T')
-    return data.groupby('Interval Start')
 
 
 def estimate_state_by_avg_point_distance_to_border(grouped_dataset: pd.DataFrame, state_boundaries: gpd.GeoDataFrame) -> Iterable[Dict]:
