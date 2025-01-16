@@ -25,14 +25,16 @@ Implement in Python.
 
 
 ## Solution:
-The following test scenario contains a timefrime with 2 pings in NY and 2 pings in CT:
+Tower pings are grouped by an adjustable timeframe (default to 15min).
+The following example contains a timefrime with 2 pings in NY and 2 pings in CT:
+
 ![alt text](https://github.com/marcio704/tower-jumps-challenge/blob/main/boundary_towers_in_different_states.png?raw=true)
 
 ### Simple solution
-It relies on the occurrences of states for a given timeframe. It assigns the state with the highest count as the estimated state for that interval (does not count on lat/log). In the test scenario above, NY would be the estimate with 50% confidence.
+It relies on the occurrences of states for a given timeframe. It assigns the state with the highest count as the estimated state for that interval (does not count on lat/log). In the example above, NY would be the estimate with 50% confidence.
 
 ### Accurate solution
-It relies on the lat/long points to calculate an average point for a given timeframe. It assigns the state containing the average point as the estimated state for that interval. The further the average point is from the state border, the higher is the confidence level.
+It relies on the lat/long points to calculate an average point for a given timeframe. It assigns the state containing the average point as the estimated state for that interval. The further the average point is from the state border, the higher is the confidence level. In the example above, CT would be the estimate with 56.09 % confidence (it could be higher or lower depending on the average point distance to the CT state border).
 
 ## Installation
 Make sure you have [pipenv](https://pipenv.pypa.io/en/latest/) and [Make](https://www.gnu.org/software/make/) installed.

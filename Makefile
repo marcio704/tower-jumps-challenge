@@ -2,7 +2,6 @@
 install:
 	pipenv install --dev
 
-
 .PHONY: path
 export PYTHONPATH=.
 path: 
