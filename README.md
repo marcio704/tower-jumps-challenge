@@ -36,6 +36,10 @@ It relies on the occurrences of states for a given timeframe. It assigns the sta
 ### Accurate solution
 It relies on the lat/long points to calculate an average point for a given timeframe. It assigns the state containing the average point as the estimated state for that interval. The further the average point is from the state border, the higher is the confidence level. In the example above, CT would be the estimate with 56.09 % confidence (it could be higher or lower depending on the average point distance to the CT state border).
 
+
+### Duration based solution
+It relies on the interval durations for each state, so noisy quick switches between different states in a small interval (configurable) are ignored.
+
 ## Installation
 Make sure you have [pipenv](https://pipenv.pypa.io/en/latest/) and [Make](https://www.gnu.org/software/make/) installed.
 
@@ -53,8 +57,11 @@ Make sure you have [pipenv](https://pipenv.pypa.io/en/latest/) and [Make](https:
 ### Run the simple solution:
 - `make run-simple-solution`
 
-### Run the accurate solution which .
+### Run the accurate solution which:
 - `make run-accurate-solution`
+
+### Run the duration-based solution:
+- `make START_DATE=01-01-2021T09:15 END_DATE=06-01-2025T09:15 run-duration-based-solution`
 
 ## Unit tests
 

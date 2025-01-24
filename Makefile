@@ -14,6 +14,11 @@ run-simple-solution: path
 run-accurate-solution: path
 	pipenv run python src/accurate_solution/towerjumps.py
 
+.PHONY: run-duration-based-solution
+run-duration-based-solution: path
+	pipenv run python src/duration_based_solution/towerjumps.py $(START_DATE) $(END_DATE)
+
+
 .PHONY: generate-heatmap
 generate-heatmap: path
 	pipenv run python src/generate-heatmap.py $(START_DATE) $(END_DATE)
