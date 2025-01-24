@@ -57,7 +57,7 @@ Make sure you have [pipenv](https://pipenv.pypa.io/en/latest/) and [Make](https:
 ### Run the simple solution:
 - `make run-simple-solution`
 
-### Run the accurate solution which:
+### Run the accurate solution:
 - `make run-accurate-solution`
 
 ### Run the duration-based solution:
